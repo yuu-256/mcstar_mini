@@ -1,0 +1,16 @@
+*.o
+*.mod
+._*
+.DS_Store
+a.out
+01MCD1/*
+!./01MCD1/AERDB7_mc3
+!./01MCD1/MLATMD
+!./01MCD1/PARAG.ch111
+!./01MCD1/ckd.g.ch_2_1e3_ltl
+!./01MCD1/ckd.g.ch_2_2e3_ltl
+!./01MCD1/PKRNL.OUT
+!./01MCD1/dkrnl/PKRNL.OUT_asp207
+!./01MCD1/py13phsf_solid_column.dat
+Mkinclude
+!./Mkinclude
