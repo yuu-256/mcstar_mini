@@ -10,6 +10,7 @@ program main
     use params
     implicit none
 
+    ! 
     ! file name
     integer :: iui, iua, iug, iuk, ius
     integer :: iup, iukd
@@ -26,10 +27,12 @@ program main
     ! Open data files
     call file_open(iui, iua, iug, iuk, ius, iup, iukd, iuo, iuow)
 
-    ! Read input data
-
+    ! Read configuration file
+    call read_config(iui, iua, iug, iuk, ius, iup, iukd, iuo, iuow)
 
     ! Close data files
     call file_close(iui, iua, iug, iuk, ius, iup, iukd, iuo, iuow)
+
+    
 
 end program main
