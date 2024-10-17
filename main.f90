@@ -10,6 +10,9 @@ program main
     use params
     implicit none
 
+    !!! CLOCK START
+    call cpu_time(time_beg)
+
     !!! OPEN DATA FILES
     call OpenData()
 
@@ -39,14 +42,15 @@ program main
     
     !!! WRITE OUTPUT FILES
     call WriteOutput
-    
-    !!! DISPLAY OUTPUT
-    call DisplayOutput
 
     !!! CLOSE OUTPUT FILES
     call CloseOutput
 
     !!! DISPLAY OUTPUT
     call DisplayOutput
+
+    !!! CLOCK STOP
+    call cpu_time(time_end)
+    print *, 'Elapsed time: ', time_end-time_beg, ' seconds'
 
 end program main
