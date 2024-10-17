@@ -10,29 +10,43 @@ program main
     use params
     implicit none
 
-    ! 
-    ! file name
-    integer :: iui, iua, iug, iuk, ius
-    integer :: iup, iukd
-    character(len=100) :: fnm
-    character(len=64) :: err
+    !!! OPEN DATA FILES
+    call OpenData
 
-    ! data file I/O units
-    iui = 1      ! user data file
-    iua = 3      ! atmospheric model library read
-    iug = 7      ! CKD gas absorption table
-    iuk = 11     ! Mie kernel file
-    ius = 12     ! Aerosol library
+    !!! READ DATA FILES
+    call ReadData(iui, iua, iug, iuk, ius, iup, iukd)
 
-    ! Open data files
-    call file_open(iui, iua, iug, iuk, ius, iup, iukd, iuo, iuow)
+    !!! READ CONFIGURATION FILE
+    call ReadConfig(iui, iua, iug, iuk, ius, iup, iukd, iuo, iuow)
 
-    ! Read configuration file
-    call read_config(iui, iua, iug, iuk, ius, iup, iukd, iuo, iuow)
+    !!! CLOSE DATA FILES
+    call CloseData(iui, iua, iug, iuk, ius, iup, iukd, iuo, iuow)
 
-    ! Close data files
-    call file_close(iui, iua, iug, iuk, ius, iup, iukd, iuo, iuow)
+    !!! PREPROCESSING
+    call Preprocess
 
+    !!! DISPLAY SETTINGS AND DATA
+    call DisplaySettings
+
+    !!! INITIALIZE VARIABLES
+    call Initialize
+
+    !!! GET 3D STRUCTURE OF THE SYSTEM
+    call GetStructure
+
+    !!! MONTE CARLO SIMULATION INCLUDING CKD BANDS INTEGRATION
+    call MCST
     
+    !!! WRITE OUTPUT FILES
+    call WriteOutput
+    
+    !!! DISPLAY OUTPUT
+    call DisplayOutput
+
+    !!! CLOSE OUTPUT FILES
+    call CloseOutput
+
+    !!! DISPLAY OUTPUT
+    call DisplayOutput
 
 end program main
