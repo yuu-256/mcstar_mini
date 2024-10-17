@@ -11,7 +11,7 @@ program main
     implicit none
 
     !!! OPEN DATA FILES
-    call OpenData
+    call OpenData()
 
     !!! READ DATA FILES
     call ReadData(iui, iua, iug, iuk, ius, iup, iukd)
@@ -20,7 +20,7 @@ program main
     call ReadConfig(iui, iua, iug, iuk, ius, iup, iukd, iuo, iuow)
 
     !!! CLOSE DATA FILES
-    call CloseData(iui, iua, iug, iuk, ius, iup, iukd, iuo, iuow)
+    call CloseData
 
     !!! PREPROCESSING
     call Preprocess
