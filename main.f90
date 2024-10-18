@@ -19,26 +19,28 @@ program main
     !!! CALCULATE PRECISION SET
     call SetPrecision(eps) ! done
 
-    !!! OPEN DATA FILES
-    call OpenData(iui, iua, ius, iuk, iup, iukd, iuo, iuow) ! done
-
-    !!! READ DATA FILES
-    call ReadData(iui, iua, iug, iuk, ius, iup, iukd)
+    !!! OPEN CONFIGURATION FILE
+    call OpenConfig(iui) ! done
 
     !!! READ CONFIGURATION FILE
-    call  ReadConfig(iui,fi,wlmin,wlmax,galbs,galbl,matm,   &
-    nln,ipbf,ifrh,trh,npoly,icn,wlcn,ncomp,cnpt,mptc,vptc,  &
-    icycl,np0,nx,ny,dx,dy,fis,indg,jatm,cconc,npv,llr,llu,  &
-    rpvw)
-    
-    do lpv=1,npv
-      nrnd=2
-      call rdmu2(dseed,nrnd,rndv)
-      rpvw(lpv,1:2)=rpvw(lpv,1:2)*(1-100*eps*rndv(1:2))
-    enddo
+    call  ReadConfig(iui,
+    fi,wlmin,wlmax,galbs,galbl,matm,nln,ipbf,ifrh,trh,      &
+    npoly,icn,wlcn,ncomp,cnpt,mptc,vptc,icycl,np0,nx,ny,    &
+    dx,dy,fis,indg,jatm,cconc,npv,llr,llu,rpvw)
+
+    !!! OPEN DATA FILES
+    call OpenData(icont,                                    &                       
+    iua,ius,iuk,iup,iukd,iug,iuo,iuow)
+
+    !!! READ DATA FILES
+    call ReadData(iua,ius,iug,icont,wlmin,wlmax,            &
+    natm,nl,alt,prs,tmp,nmol,cng,nptc,ins,cnp,ispcvp,       &
+    rfracp,asphr,rop,dryap,nawp,awcrp,nv,nwlv,wlv,rfi,      &
+    nbnd,wbnd)
 
     !!! CLOSE DATA FILES
-    call CloseData
+    !!! ON DEVELOPMENT !!!
+    ! call CloseData(iui, iua, ius, iuk, iup, iukd, iug)
 
     !!! PREPROCESSING
     call Preprocess
