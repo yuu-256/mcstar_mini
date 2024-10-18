@@ -1,10 +1,12 @@
-subroutine ReadData(iua,ius,natm,nl,alt,prs,tmp,nmol,cng,nptc,ins,cnp,ispcvp,rfracp,asphr,rop,dryap,nawp,awcrp,nv,nwlv,wlv,rfi)
+subroutine ReadData(iua,ius,iug,icont,wlmin,wlmax,natm,nl,alt,prs,tmp,nmol,cng,nptc,ins,cnp,ispcvp,rfracp,asphr,rop,dryap,nawp,awcrp,nv,nwlv,wlv,rfi,nbnd,wbnd)
 
     !!! DECLARATION:
     implicit none
 
     ! input
-    integer,intent(in):: iua,ius   !! device number
+    integer,intent(in):: iua,ius,iug   !! device number
+    integer,intent(in):: icont(10)     !! control parameters
+    real(8),intent(in):: wlmin,wlmax  !! min and max wavelength [micron]
     
     ! output
     integer,intent(inout):: natm,nl       !! number of atmospheric layer
@@ -29,7 +31,10 @@ subroutine ReadData(iua,ius,natm,nl,alt,prs,tmp,nmol,cng,nptc,ins,cnp,ispcvp,rfr
     integer,intent(inout):: nwlv          !! number of wavelenggths for rfi tables
     real(8),intent(inout):: wlv(kwlv)     !! wavelengths [micron] for rfi tables
     real(8),intent(inout):: rfi(kwlv,knv,2)  !! refractive index of fundamental
-
+    
+    ! CKD parameters
+    integer,intent(out):: nbnd
+    real(8),intent(out):: wbnd(knw)
 
     !!! EXECUTION:
     ! model atmospheres
@@ -41,6 +46,6 @@ subroutine ReadData(iua,ius,natm,nl,alt,prs,tmp,nmol,cng,nptc,ins,cnp,ispcvp,rfr
           dryap,nawp, awcrp,nv,nwlv,wlv,rfi)
 
     ! get CKD parameters
-    call gtgas(iug_n) ! 未完成
+    call gtgas(iug,icont,wlmin,wlmax,nbnd,wbnd)
     
 end subroutine ReadData
