@@ -25,6 +25,9 @@ subroutine ReadConfig(iui,fi,wlmin,wlmax,galbs,galbl,matm,nln,ipbf,ifrh,trh,npol
   integer, intent(out) :: llu(:),rpvw(:,:)
 
   integer :: i,j,k,lz,k1,l1
+  integer :: lpv
+  integer :: nln1
+
 
 
   !!! EXECUTION:
@@ -34,6 +37,7 @@ subroutine ReadConfig(iui,fi,wlmin,wlmax,galbs,galbl,matm,nln,ipbf,ifrh,trh,npol
   read(iui,*) wlmin,wlmax
   read(iui,*) galbs(1,1),galbl(1,1)
   read(iui,*) matm,nln
+  nln1=nln+1
   read(iui,*) (ipbf(i),i=1,nln1)
   read(iui,*) ifrh,trh
   read(iui,*) npoly,icn,wlcn
