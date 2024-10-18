@@ -1,17 +1,17 @@
-subroutine gtgas(iug,nbnd,wbnd)
+subroutine gtgas(iug,icont,wlmin,wlmax,nbnd,wbnd)
 
     !!! DECLARATION:
     use params
     implicit none
     integer, intent(in) :: iug
+    integer, intent(in) :: icont(10)
+    real(8), intent(in) :: wlmin, wlmax
+
     integer, intent(out) :: nbnd
     real(8), intent(out) :: wbnd(knw)
     integer :: iw, ibnd
-    integer :: ngas(2)
-    real(8) :: wlmin, wlmax
+    integer :: ngas(1:2) = (/ 2, 2000 /)
 
-
-    
     !!! EXECUTION:
     if(icont(2)<=1) then ! broad band
         read(iug,*) nbnd
@@ -26,7 +26,7 @@ subroutine gtgas(iug,nbnd,wbnd)
           else if(iw==nbnd) then
             wbnd(iw+1)=1.d4/wlmin
           else
-           wbnd(iw+1)=10**((ibnd+iw)/dble(ngas(2)))
+            wbnd(iw+1)=10**((ibnd+iw)/dble(ngas(2)))
           end if
         end do
     end if

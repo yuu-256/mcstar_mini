@@ -1,4 +1,4 @@
-subroutine OpenData(icont,iua,ius,iuk,iup,iukd,iug_n,iug_b,iuo,iuow)
+subroutine OpenData(icont,iua,ius,iuk,iup,iukd,iug,iuo,iuow)
     !!! OPEN DATA FILES
 
     !!! DECLARATION:

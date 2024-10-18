@@ -33,11 +33,11 @@ subroutine ReadData(iua,ius,natm,nl,alt,prs,tmp,nmol,cng,nptc,ins,cnp,ispcvp,rfr
 
     !!! EXECUTION:
     ! model atmospheres
-     call mlatm(iua,nl,natm,nm1,nm2,idm,idms,wmol,rams,airm, &
+    call mlatm(iua,nl,natm,nm1,nm2,idm,idms,wmol,rams,airm, &
           alt,pmatm,tmatm,dnsty,amol,trac)
 
     ! get aerosol parameters
-     call gtpar7(ius,nl,nptc,ins,iver,cnp1,ispcvp,rfracp,asphr,rop, &
+    call gtpar7(ius,nl,nptc,ins,iver,cnp1,ispcvp,rfracp,asphr,rop, &
           dryap,nawp, awcrp,nv,nwlv,wlv,rfi)
 
     ! get CKD parameters
