@@ -1,8 +1,8 @@
-subroutine CloseData(iui, iua, ius, iuk, iup, iukd)
+subroutine CloseData(iui, iua, ius, iuk, iup, iukd, iug)
 
     !!! DECLARATION:
     implicit none
-    integer, intent(in) :: iui, iua, ius, iuk, iup, iukd
+    integer, intent(in) :: iui, iua, ius, iuk, iup, iukd, iug
 
     !!! EXECUTION:
     close(iui)
@@ -11,5 +11,6 @@ subroutine CloseData(iui, iua, ius, iuk, iup, iukd)
     close(iuk)
     close(iup)
     close(iukd)
+    close(iug)
 
 end subroutine CloseData
