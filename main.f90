@@ -57,13 +57,13 @@ program main
     call MCST
     
     !!! WRITE OUTPUT FILES
-    call WriteOutput
+    call WriteOutput !ON DEVELOPMENT!!!
 
     !!! CLOSE OUTPUT FILES
     call CloseOutput
 
     !!! DISPLAY OUTPUT
-    call DisplayOutput()
+    call DisplayOutput() ! これいる？
 
     !!! CLOCK STOP
     call cpu_time(time_end)
