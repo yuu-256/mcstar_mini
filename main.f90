@@ -46,13 +46,12 @@ program main
     call Preprocess
 
     !!! DISPLAY SETTINGS AND DATA
-    call DisplaySettings
+    call DisplaySettings(icont,nfi,fi,kback) ! done
 
     !!! INITIALIZE VARIABLES
-    call Initialize
-
-    !!! GET 3D STRUCTURE OF THE SYSTEM
-    call GetStructure
+    call Initialize(na12, na0, nfi, npv, ipol, nx, ny, sol, &
+    ais2, aie2, flxsp2, flxep2, flxs2, flxs02,              &   
+    flxuxy2, flxd002) ! done
 
     !!! MONTE CARLO SIMULATION INCLUDING CKD BANDS INTEGRATION
     call MCST
@@ -64,7 +63,7 @@ program main
     call CloseOutput
 
     !!! DISPLAY OUTPUT
-    call DisplayOutput
+    call DisplayOutput()
 
     !!! CLOCK STOP
     call cpu_time(time_end)
